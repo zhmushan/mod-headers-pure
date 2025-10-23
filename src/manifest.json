@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "ModHeaders Pure",
+  "version": "1.0.0",
+  "description": "纯净的HTTP头修改工具 - 安全、高效、易用",
+  "author": "ModHeaders Pure Team",
+  
+  "permissions": [
+    "storage",
+    "declarativeNetRequest",
+    "activeTab",
+    "scripting"
+  ],
+  
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  
+  "background": {
+    "service_worker": "src/background.ts",
+    "type": "module"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content.ts"],
+      "css": ["src/styles/content.css"]
+    }
+  ],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "ModHeaders Pure",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  
+  "options_page": "options.html",
+  
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

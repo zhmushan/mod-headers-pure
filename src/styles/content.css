@@ -1,0 +1,296 @@
+/* 内容脚本样式 - 用于网页中注入的元素 */
+
+#modheaders-floating-button {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  width: 50px !important;
+  height: 50px !important;
+  background: #3b82f6 !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+  cursor: pointer !important;
+  z-index: 2147483646 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  transition: all 0.2s ease !important;
+  border: none !important;
+  outline: none !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+#modheaders-floating-button:hover {
+  transform: scale(1.1) !important;
+  background: #2563eb !important;
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4) !important;
+}
+
+#modheaders-floating-button:active {
+  transform: scale(0.95) !important;
+}
+
+#modheaders-floating-panel {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  width: 320px !important;
+  max-width: calc(100vw - 40px) !important;
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  z-index: 2147483647 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  color: #1f2937 !important;
+  display: none !important;
+  animation: modheaders-slide-in 0.2s ease-out !important;
+}
+
+@keyframes modheaders-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+#modheaders-floating-panel * {
+  box-sizing: border-box !important;
+}
+
+#modheaders-floating-panel button {
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  color: inherit !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  outline: none !important;
+}
+
+#modheaders-floating-panel button:focus {
+  outline: 2px solid #3b82f6 !important;
+  outline-offset: 2px !important;
+}
+
+#modheaders-floating-panel .modheaders-header {
+  padding: 16px !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+#modheaders-floating-panel .modheaders-title {
+  margin: 0 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #1f2937 !important;
+}
+
+#modheaders-floating-panel .modheaders-close {
+  background: none !important;
+  border: none !important;
+  font-size: 20px !important;
+  cursor: pointer !important;
+  color: #6b7280 !important;
+  width: 24px !important;
+  height: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 4px !important;
+  transition: all 0.2s ease !important;
+}
+
+#modheaders-floating-panel .modheaders-close:hover {
+  background: #f3f4f6 !important;
+  color: #374151 !important;
+}
+
+#modheaders-floating-panel .modheaders-content {
+  padding: 16px !important;
+}
+
+#modheaders-floating-panel .modheaders-status {
+  margin-bottom: 12px !important;
+}
+
+#modheaders-floating-panel .modheaders-status-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+#modheaders-floating-panel .modheaders-indicator {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  background: #10b981 !important;
+  flex-shrink: 0 !important;
+}
+
+#modheaders-floating-panel .modheaders-indicator.disabled {
+  background: #ef4444 !important;
+}
+
+#modheaders-floating-panel .modheaders-rules {
+  margin-bottom: 12px !important;
+  font-size: 12px !important;
+  color: #6b7280 !important;
+}
+
+#modheaders-floating-panel .modheaders-actions {
+  display: flex !important;
+  gap: 8px !important;
+}
+
+#modheaders-floating-panel .modheaders-btn {
+  flex: 1 !important;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  text-align: center !important;
+  border: none !important;
+  outline: none !important;
+}
+
+#modheaders-floating-panel .modheaders-btn-primary {
+  background: #3b82f6 !important;
+  color: white !important;
+}
+
+#modheaders-floating-panel .modheaders-btn-primary:hover {
+  background: #2563eb !important;
+}
+
+#modheaders-floating-panel .modheaders-btn-secondary {
+  background: #6b7280 !important;
+  color: white !important;
+}
+
+#modheaders-floating-panel .modheaders-btn-secondary:hover {
+  background: #4b5563 !important;
+}
+
+#modheaders-floating-panel .modheaders-btn-danger {
+  background: #ef4444 !important;
+  color: white !important;
+}
+
+#modheaders-floating-panel .modheaders-btn-danger:hover {
+  background: #dc2626 !important;
+}
+
+/* 深色主题支持 */
+@media (prefers-color-scheme: dark) {
+  #modheaders-floating-panel {
+    background: #1f2937 !important;
+    border-color: #374151 !important;
+    color: #f9fafb !important;
+  }
+
+  #modheaders-floating-panel .modheaders-header {
+    border-bottom-color: #374151 !important;
+  }
+
+  #modheaders-floating-panel .modheaders-title {
+    color: #f9fafb !important;
+  }
+
+  #modheaders-floating-panel .modheaders-close {
+    color: #9ca3af !important;
+  }
+
+  #modheaders-floating-panel .modheaders-close:hover {
+    background: #374151 !important;
+    color: #d1d5db !important;
+  }
+
+  #modheaders-floating-panel .modheaders-rules {
+    color: #9ca3af !important;
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+  #modheaders-floating-panel {
+    width: calc(100vw - 20px) !important;
+    right: 10px !important;
+    top: 10px !important;
+  }
+
+  #modheaders-floating-button {
+    bottom: 15px !important;
+    right: 15px !important;
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 18px !important;
+  }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+  #modheaders-floating-panel {
+    border-width: 2px !important;
+    border-color: #000 !important;
+  }
+
+  #modheaders-floating-button {
+    border: 2px solid #000 !important;
+  }
+}
+
+/* 减少动画模式 */
+@media (prefers-reduced-motion: reduce) {
+  #modheaders-floating-button,
+  #modheaders-floating-panel,
+  #modheaders-floating-panel * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* 确保不被页面样式覆盖 */
+#modheaders-floating-button,
+#modheaders-floating-panel,
+#modheaders-floating-panel * {
+  all: unset !important;
+  box-sizing: border-box !important;
+}
+
+/* 重新应用必要的样式 */
+#modheaders-floating-button {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  width: 50px !important;
+  height: 50px !important;
+  background: #3b82f6 !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+  cursor: pointer !important;
+  z-index: 2147483646 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
