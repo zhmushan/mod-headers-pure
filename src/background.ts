@@ -32,16 +32,6 @@ function generateRuleId(): number {
   return timestamp % 1000000 + random
 }
 
-// 初始化插件
-chrome.runtime.onInstalled.addListener(async () => {
-  console.log('ModHeaders Pure 插件已安装')
-  
-  // 清除现有规则
-  await clearAllRules()
-  
-  // 加载保存的配置
-  await loadConfig()
-})
 
 // 清除所有规则
 async function clearAllRules() {
@@ -150,9 +140,39 @@ async function updateRules() {
     
     currentRuleId = newRuleId
     console.log('已更新规则，ID:', newRuleId, '包含', validHeaders.length, '个HTTP头')
+    
+    // 通知所有content script状态更新
+    notifyContentScripts()
   } catch (error) {
     console.error('更新规则失败:', error)
   }
+}
+
+// 通知所有content script状态更新
+function notifyContentScripts() {
+  const activeRuleCount = currentConfig.headers ? currentConfig.headers.filter(h => 
+    h.enabled && h.name.trim() && h.value.trim()
+  ).length : 0
+  
+  console.log('notifyContentScripts - currentConfig:', currentConfig, 'activeRuleCount:', activeRuleCount)
+  
+  chrome.tabs.query({}, (tabs) => {
+    console.log('Found', tabs.length, 'tabs to notify')
+    tabs.forEach(tab => {
+      if (tab.id) {
+        chrome.tabs.sendMessage(tab.id, {
+          type: 'UPDATE_STATUS',
+          data: {
+            enabled: currentConfig.enabled || false,
+            ruleCount: activeRuleCount,
+            urlPattern: currentConfig.urlPattern || '<all_urls>'
+          }
+        }).catch(() => {
+          // 忽略无法发送消息的标签页（如chrome://页面）
+        })
+      }
+    })
+  })
 }
 
 // 监听来自popup的消息
@@ -188,6 +208,38 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
       sendResponse({ config: currentConfig })
       break
 
+    case 'GET_STATUS':
+      const activeRuleCount = currentConfig.headers ? currentConfig.headers.filter(h => 
+        h.enabled && h.name.trim() && h.value.trim()
+      ).length : 0
+      console.log('GET_STATUS - currentConfig:', currentConfig, 'activeRuleCount:', activeRuleCount)
+      sendResponse({ 
+        success: true, 
+        data: {
+          enabled: currentConfig.enabled || false,
+          ruleCount: activeRuleCount,
+          urlPattern: currentConfig.urlPattern || '<all_urls>'
+        }
+      })
+      break
+
+    case 'TOGGLE_EXTENSION':
+      currentConfig.enabled = !currentConfig.enabled
+      chrome.storage.local.set({ 'modheaders-pure-config': currentConfig })
+      updateRules().then(() => {
+        sendResponse({ success: true })
+      }).catch((error) => {
+        console.error('切换状态失败:', error)
+        sendResponse({ success: false, error: error.message })
+      })
+      return true
+
+    case 'OPEN_POPUP':
+      // 打开popup页面
+      chrome.action.openPopup()
+      sendResponse({ success: true })
+      break
+
     case 'CLEAR_RULES':
       clearAllRules().then(() => {
         sendResponse({ success: true })
@@ -216,6 +268,17 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 chrome.runtime.onStartup.addListener(() => {
   console.log('ModHeaders Pure 插件已启动')
   loadConfig()
+})
+
+// 插件启动时也加载配置
+chrome.runtime.onInstalled.addListener(async () => {
+  console.log('ModHeaders Pure 插件已安装')
+  
+  // 清除现有规则
+  await clearAllRules()
+  
+  // 加载保存的配置
+  await loadConfig()
 })
 
 // 定期清理和优化

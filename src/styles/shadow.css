@@ -1,0 +1,297 @@
+/* Shadow DOM 样式 - 完全隔离，不会污染页面 */
+
+/* 浮动按钮样式 */
+.modheaders-floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: #3b82f6;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  border: none;
+  outline: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  z-index: 2147483646;
+}
+
+.modheaders-floating-button:hover {
+  transform: scale(1.1);
+  background: #2563eb;
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.modheaders-floating-button:active {
+  transform: scale(0.95);
+}
+
+/* 浮动面板样式 */
+.modheaders-floating-panel {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 320px;
+  max-width: calc(100vw - 40px);
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  z-index: 2147483647;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #1f2937;
+  display: none;
+  animation: modheaders-slide-in 0.2s ease-out;
+}
+
+@keyframes modheaders-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 面板头部 */
+.modheaders-header {
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9fafb;
+}
+
+.modheaders-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.modheaders-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #6b7280;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.modheaders-close:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+/* 面板内容 */
+.modheaders-content {
+  padding: 16px;
+}
+
+.modheaders-status {
+  margin-bottom: 12px;
+}
+
+.modheaders-status-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modheaders-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  flex-shrink: 0;
+}
+
+.modheaders-indicator.disabled {
+  background: #ef4444;
+}
+
+.modheaders-rules {
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.modheaders-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.modheaders-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-align: center;
+  border: none;
+  outline: none;
+}
+
+.modheaders-btn-primary {
+  background: #3b82f6;
+  color: white;
+}
+
+.modheaders-btn-primary:hover {
+  background: #2563eb;
+}
+
+.modheaders-btn-secondary {
+  background: #6b7280;
+  color: white;
+}
+
+.modheaders-btn-secondary:hover {
+  background: #4b5563;
+}
+
+.modheaders-btn-danger {
+  background: #ef4444;
+  color: white;
+}
+
+.modheaders-btn-danger:hover {
+  background: #dc2626;
+}
+
+/* 深色主题支持 */
+@media (prefers-color-scheme: dark) {
+  .modheaders-floating-panel {
+    background: #1f2937;
+    border-color: #374151;
+    color: #f9fafb;
+  }
+
+  .modheaders-header {
+    background: #111827;
+    border-bottom-color: #374151;
+  }
+
+  .modheaders-title {
+    color: #f9fafb;
+  }
+
+  .modheaders-close {
+    color: #9ca3af;
+  }
+
+  .modheaders-close:hover {
+    background: #374151;
+    color: #d1d5db;
+  }
+
+  .modheaders-rules {
+    color: #9ca3af;
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+  .modheaders-floating-panel {
+    width: calc(100vw - 20px);
+    right: 10px;
+    top: 10px;
+  }
+
+  .modheaders-floating-button {
+    bottom: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+  .modheaders-floating-panel {
+    border-width: 2px;
+    border-color: #000;
+  }
+
+  .modheaders-floating-button {
+    border: 2px solid #000;
+  }
+}
+
+/* 减少动画模式 */
+@media (prefers-reduced-motion: reduce) {
+  .modheaders-floating-button,
+  .modheaders-floating-panel,
+  .modheaders-floating-panel * {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* 确保样式隔离 */
+.modheaders-floating-button,
+.modheaders-floating-panel {
+  all: initial;
+  box-sizing: border-box;
+}
+
+/* 重新应用必要的样式 */
+.modheaders-floating-button {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  width: 50px !important;
+  height: 50px !important;
+  background: #3b82f6 !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
+  cursor: pointer !important;
+  z-index: 2147483646 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.modheaders-floating-panel {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  width: 320px !important;
+  max-width: calc(100vw - 40px) !important;
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  z-index: 2147483647 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  color: #1f2937 !important;
+  display: none !important;
+}

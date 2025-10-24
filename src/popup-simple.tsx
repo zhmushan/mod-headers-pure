@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 import { SimpleHeaderManager } from '@/components/features/SimpleHeaderManager'
 import { useSimpleStore } from '@/stores/useSimpleStoreV2'
-import { Settings, Download, Upload, Trash2 } from 'lucide-react'
+import { Download, Upload, Trash2 } from 'lucide-react'
 import './styles/globals.css'
 
 const PopupSimpleApp: React.FC = () => {
@@ -170,7 +170,7 @@ const PopupSimpleApp: React.FC = () => {
         <div className="p-4 border-t bg-muted/30">
           <div className="space-y-3">
             {/* 操作按钮 */}
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-3 gap-2">
               <Button variant="outline" size="sm" onClick={handleExport}>
                 <Download className="w-4 h-4 mr-2" />
                 导出配置
@@ -178,10 +178,6 @@ const PopupSimpleApp: React.FC = () => {
               <Button variant="outline" size="sm" onClick={handleImport}>
                 <Upload className="w-4 h-4 mr-2" />
                 导入配置
-              </Button>
-              <Button variant="outline" size="sm" onClick={() => window.open('options.html', '_blank')}>
-                <Settings className="w-4 h-4 mr-2" />
-                高级设置
               </Button>
               <Button variant="destructive" size="sm" onClick={handleClearAll}>
                 <Trash2 className="w-4 h-4 mr-2" />

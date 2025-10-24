@@ -87,7 +87,6 @@ jspm_packages/
 
 # Gatsby files
 .cache/
-public
 
 # Storybook build outputs
 .out
@@ -112,7 +111,6 @@ temp/
 
 # Duplicate files in root (these should be in src/)
 options.html
-popup.html
 
 # TypeScript
 *.tsbuildinfo
